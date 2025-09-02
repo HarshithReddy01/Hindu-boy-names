@@ -34,7 +34,14 @@ const App: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`${process.env.PUBLIC_URL}/names.csv`);
+      let csvPath = './names.csv';
+      if (process.env.PUBLIC_URL) {
+        csvPath = `${process.env.PUBLIC_URL}/names.csv`;
+      }
+      
+      console.log('Attempting to load CSV from:', csvPath);
+      
+      const response = await fetch(csvPath);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -52,11 +59,13 @@ const App: React.FC = () => {
         ) as NameData[];
         setAllNames(validNames);
         setFilteredNames(validNames);
+        console.log(`Successfully loaded ${validNames.length} names`);
       } else {
         setError('No data found in the CSV file');
       }
       setLoading(false);
     } catch (error) {
+      console.error('CSV loading error:', error);
       setError(`Error loading CSV file: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setLoading(false);
     }
