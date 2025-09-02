@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindu Names Browser</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hindu Names Browser</h1>
+            <p>Explore and search through beautiful Hindu names</p>
+        </div>
+        
+        <div class="search-section">
+            <input 
+                type="text" 
+                class="search-box" 
+                placeholder="Type to search names..."
+                id="searchInput"
+            >
+        </div>
+        
+        <div class="results-section" id="resultsSection">
+            <div class="loading" id="loadingMessage">
+                Loading names...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allNames = [];
+        let filteredNames = [];
+
+        // Load CSV file when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCSV();
+        });
+
+        function loadCSV() {
+            Papa.parse('names.csv', {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    if (results.data && results.data.length > 0) {
+                        allNames = results.data.filter(row => row.name && row.name.trim() !== '');
+                        filteredNames = [...allNames];
+                        displayNames();
+                        setupSearch();
+                    } else {
+                        showError('No data found in the CSV file');
+                    }
+                },
+                error: function(error) {
+                    showError('Error loading CSV file: ' + error.message);
+                }
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterNames(searchTerm);
+            });
+        }
+
+        function filterNames(searchTerm) {
+            if (searchTerm === '') {
+                filteredNames = [...allNames];
+            } else {
+                filteredNames = allNames.filter(name => 
+                    name.name.toLowerCase().startsWith(searchTerm)
+                );
+            }
+            
+            // Sorting macha alphabeticailly
+            filteredNames.sort((a, b) => a.name.localeCompare(b.name));
+            displayNames();
+        }
+
+        function displayNames() {
+            const resultsSection = document.getElementById('resultsSection');
+            
+            if (filteredNames.length === 0) {
+                resultsSection.innerHTML = `
+                    <div class="no-results">
+                        <p>No names found matching your search.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const resultsInfo = `
+                <div class="results-info">
+                    Showing ${filteredNames.length} of ${allNames.length} names
+                </div>
+            `;
+
+            const namesList = filteredNames.map(name => `
+                <div class="name-card">
+                    <div class="name-text">${name.name}</div>
+                    <div class="name-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Length:</span>
+                            <span>${name.length || 'N/A'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Syllables:</span>
+                            <span>${name.syllables_est || 'N/A'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Vowel Ratio:</span>
+                            <span>${name.vowel_ratio || 'N/A'}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            resultsSection.innerHTML = resultsInfo + `
+                <div class="names-list">
+                    ${namesList}
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.innerHTML = `
+                <div class="error">
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
