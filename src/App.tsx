@@ -34,7 +34,7 @@ const App: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      const csvPath = '/Hindu-boy-names/names.csv';
+      const csvPath = '/Hindu-1000-girls-names/names.csv';
       
       console.log('Attempting to load CSV from:', csvPath);
       

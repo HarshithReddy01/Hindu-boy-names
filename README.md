@@ -2,7 +2,7 @@
 
 View 1000+ Hindu names with search functionality.
 
-Visit GitHub Pages: https://harshithreddy01.github.io/Hindu-boy-names
+Visit GitHub Pages: https://harshithreddy01.github.io/Hindu-1000-girls-names
 
 ## Features
 - Browse 1000+ Hindu names
