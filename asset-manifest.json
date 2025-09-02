@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Hindu-boy-names/static/css/main.79e9a1ee.css",
-    "main.js": "/Hindu-boy-names/static/js/main.3c69ff01.js",
+    "main.js": "/Hindu-boy-names/static/js/main.9484cb57.js",
     "index.html": "/Hindu-boy-names/index.html",
     "main.79e9a1ee.css.map": "/Hindu-boy-names/static/css/main.79e9a1ee.css.map",
-    "main.3c69ff01.js.map": "/Hindu-boy-names/static/js/main.3c69ff01.js.map"
+    "main.9484cb57.js.map": "/Hindu-boy-names/static/js/main.9484cb57.js.map"
   },
   "entrypoints": [
     "static/css/main.79e9a1ee.css",
-    "static/js/main.3c69ff01.js"
+    "static/js/main.9484cb57.js"
   ]
 }
