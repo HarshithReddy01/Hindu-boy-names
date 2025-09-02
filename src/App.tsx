@@ -34,10 +34,7 @@ const App: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      let csvPath = './names.csv';
-      if (process.env.PUBLIC_URL) {
-        csvPath = `${process.env.PUBLIC_URL}/names.csv`;
-      }
+      const csvPath = '/Hindu-boy-names/names.csv';
       
       console.log('Attempting to load CSV from:', csvPath);
       
