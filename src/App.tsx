@@ -34,7 +34,7 @@ const App: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('/names.csv');
+      const response = await fetch(`${process.env.PUBLIC_URL}/names.csv`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
