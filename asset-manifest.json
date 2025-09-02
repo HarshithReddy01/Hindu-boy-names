@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Hindu-boy-names/static/css/main.79e9a1ee.css",
-    "main.js": "/Hindu-boy-names/static/js/main.fadd70ef.js",
-    "index.html": "/Hindu-boy-names/index.html",
-    "main.79e9a1ee.css.map": "/Hindu-boy-names/static/css/main.79e9a1ee.css.map",
-    "main.fadd70ef.js.map": "/Hindu-boy-names/static/js/main.fadd70ef.js.map"
+    "main.css": "/Hindu-1000-girls-names/static/css/main.79e9a1ee.css",
+    "main.js": "/Hindu-1000-girls-names/static/js/main.7791632a.js",
+    "index.html": "/Hindu-1000-girls-names/index.html",
+    "main.79e9a1ee.css.map": "/Hindu-1000-girls-names/static/css/main.79e9a1ee.css.map",
+    "main.7791632a.js.map": "/Hindu-1000-girls-names/static/js/main.7791632a.js.map"
   },
   "entrypoints": [
     "static/css/main.79e9a1ee.css",
-    "static/js/main.fadd70ef.js"
+    "static/js/main.7791632a.js"
   ]
 }
